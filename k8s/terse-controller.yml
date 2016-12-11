@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: terse
+  name: terse-controller
+spec:
+  replicas: 2
+  selector:
+    name: terse
+  template:
+    metadata:
+      labels:
+        name: terse
+    spec:
+      containers:
+      - image: stupschwartz/terse
+        name: terse
+        ports:
+        - containerPort: 8888
+          name: http-server
