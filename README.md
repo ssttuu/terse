@@ -1,3 +1,3 @@
 # Terse
-A url shortener using Kubernetes, couchdb, influxdb, and tornado.
 
+A url shortener using tornado, couchdb, influxdb, docker, and kubernetes.
