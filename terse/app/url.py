@@ -39,6 +39,7 @@ class UrlApiHandler(tornado.web.RequestHandler):
 
         doc = {
             '_id': redirect_id,
+            'redirect_id': redirect_id,
             'target': request_data['target'],
         }
 
@@ -46,6 +47,7 @@ class UrlApiHandler(tornado.web.RequestHandler):
 
         doc['_rev'] = _rev
 
+        self.set_status(201)
         return self.write(json.dumps(doc))
 
     def patch(self, redirect_id=None):

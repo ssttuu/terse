@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  acceptance:
+    image: stupschwartz/terse-acceptance
+    build: ./acceptance
+    volumes:
+      - ./acceptance:/acceptance
+    depends_on:
+      - terse
