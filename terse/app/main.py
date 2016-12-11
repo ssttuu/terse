@@ -1,6 +1,10 @@
 import tornado.ioloop
 import tornado.web
 
+from db import couch
+from redirect import RedirectHandler
+from url import UrlApiHandler
+
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -8,8 +12,14 @@ class MainHandler(tornado.web.RequestHandler):
 
 
 def make_app():
+    if 'urls' not in couch:
+        couch.create('urls')
+
     return tornado.web.Application([
-        (r"/", MainHandler),
+        (r'/', MainHandler),
+        (r'/api/url/', UrlApiHandler),
+        (r'/api/url/(\w+)/', UrlApiHandler),
+        (r'/(\w+)/', RedirectHandler),
     ])
 
 

@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  terse:
+    image: stupschwartz/terse:latest
+    build: ./terse
+    volumes:
+      - ./terse:/opt/terse
+    depends_on:
+      - couch
+    ports:
+      - 8888:8888
+  couch:
+    image: couchdb:1.6

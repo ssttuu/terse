@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
+  labels:
+    name: couch
   name: couchdb-rc
 spec:
   replicas: 1
@@ -23,3 +25,18 @@ spec:
       volumes:
       - name: couchdb-volume
         emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: couch
+  labels:
+    name: couch
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5984
+      targetPort: 5984
+      protocol: TCP
+  selector:
+    name: couch
